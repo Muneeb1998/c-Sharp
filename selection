@@ -1,0 +1,9 @@
+ private void button1_Click(object sender, EventArgs e)
+        {
+           conn.Open();
+           SqlDataAdapter da = new SqlDataAdapter(" SELECT * FROM testmarks EXCEPT SELECT TOP(3) * FROM testmarks WHERE Test_Marks>=50  EXCEPT SELECT * FROM testmarks WHERE Test_Marks<=50 order by Marks ASC", conn);
+          DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+           conn.Close();
+        }
