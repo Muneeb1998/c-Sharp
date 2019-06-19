@@ -1,0 +1,22 @@
+//number validation
+ private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8) {
+                MessageBox.Show("Enter Valid Contact Number");
+                e.Handled = true;
+            }
+//character validation
+ private void textBox1_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122) || (ch == 8) || (ch == 32) ||)
+            {
+                e.Handled = false;
+            }
+            else {
+
+                MessageBox.Show("Enter Valid Name");
+                e.Handled = true;
+            }
+        }
