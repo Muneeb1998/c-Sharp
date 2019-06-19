@@ -1,0 +1,29 @@
+private void button1_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            SqlDataAdapter sd = new SqlDataAdapter("SELECT COUNT(*) FROM stureg WHERE User_Name='" + textBox1.Text + "'", conn);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            if (dt.Rows[0][0].ToString() == "1")
+            {
+                MessageBox.Show("Student Already Registered");
+                textBox1.Text = "";
+                textBox2.Text = "";
+            }
+                else if ((textBox1.Text == "") || (textBox2.Text == ""))
+                { 
+                    MessageBox.Show("Fill all field");
+                }
+            else {
+                
+              
+                    SqlCommand sm = new SqlCommand("INSERT INTO stureg(User_Name,Passward)VALUES('" + textBox1.Text + "','" + textBox2.Text + "')", conn);
+                    if (sm.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("Registered Successfully");
+                        textBox1.Text = "";
+                        textBox2.Text = "";
+                    }
+                
+            }
+        
