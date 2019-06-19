@@ -1,0 +1,52 @@
+private void button3_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+
+            SqlDataAdapter sd = new SqlDataAdapter("SELECT COUNT(*) FROM testmarks WHERE Form_ID='" + ID.Text + "'", conn);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            if (dt.Rows[0][0].ToString() == "1")
+            {
+
+
+                SqlCommand sm = new SqlCommand("SELECT * FROM testmarks WHERE Form_ID = '" + ID.Text + "'", conn);
+
+                SqlDataReader dr = sm.ExecuteReader();
+                if (dr.Read())
+                {
+                    textBox1.Text = (dr["First_Name"].ToString());
+                    textBox2.Text = (dr["Last_Name"].ToString());
+                    textBox3.Text = (dr["Contact_Number"].ToString());
+                    dateTimePicker1.Text = (dr["Date_of_Birth"]).ToString();
+                    textBox5.Text = (dr["City"].ToString());
+                    textBox6.Text = (dr["NIC_Number"].ToString());
+                    comboBox1.Text = (dr["Gender"].ToString());
+                    textBox7.Text = (dr["Marks"].ToString());
+                    comboBox2.Text = (dr["First_Priority"].ToString());
+                    comboBox3.Text = (dr["Second_Priority"].ToString());
+                    comboBox4.Text = (dr["Third_Priority"].ToString());
+                    textBox8.Text = (dr["Test_Marks"].ToString());
+            }
+            }
+
+            else
+            {
+
+                MessageBox.Show("Record Not Found");
+                ID.Text = "";
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                dateTimePicker1.Text = "";
+                textBox5.Text = "";
+                textBox6.Text = "";
+                comboBox1.Text = "";
+                textBox7.Text = "";
+                comboBox2.Text = "";
+                comboBox3.Text = "";
+                comboBox4.Text = "";
+                textBox8.Text = "";
+
+            }
+            conn.Close();
+        }
