@@ -1,0 +1,4 @@
+SqlDataAdapter sda = new SqlDataAdapter("select isnull (max(cast( Form_ID as int)),0)+1 from addform", conn);
+DataTable dt = new DataTable();
+sda.Fill(dt);
+ID.Text = dt.Rows[0][0].ToString();
